@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary-fixed-variant":"#003ea8","surface-bright":"#faf8ff","error":"#ba1a1a","on-primary-fixed":"#00174b","on-secondary":"#ffffff","on-primary":"#ffffff","primary-container":"#2563eb","surface-container-lowest":"#ffffff","secondary":"#006a61","surface-container-low":"#f2f3ff","on-surface":"#131b2e","outline":"#737686","surface":"#faf8ff","on-tertiary-container":"#ffecec","primary-fixed":"#dbe1ff","surface-tint":"#0053db","inverse-primary":"#b4c5ff","secondary-fixed-dim":"#6bd8cb","secondary-fixed":"#89f5e7","on-error":"#ffffff","tertiary":"#ad0033","surface-container-highest":"#dae2fd","primary":"#004ac6","error-container":"#ffdad6","secondary-container":"#86f2e4","background":"#faf8ff","tertiary-fixed-dim":"#ffb2b7","on-background":"#131b2e","outline-variant":"#c3c6d7","tertiary-fixed":"#ffdadb","surface-container":"#eaedff","inverse-on-surface":"#eef0ff","on-tertiary-fixed-variant":"#92002a","on-secondary-fixed-variant":"#005049","on-secondary-fixed":"#00201d","surface-dim":"#d2d9f4","on-surface-variant":"#434655","tertiary-container":"#d22348","on-secondary-container":"#006f66","on-primary-container":"#eeefff","surface-container-high":"#e2e7ff","on-error-container":"#93000a","surface-variant":"#dae2fd","primary-fixed-dim":"#b4c5ff","inverse-surface":"#283044","on-tertiary":"#ffffff","on-tertiary-fixed":"#40000d"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xl":"2rem","space-xs":"0.25rem","space-sm":"0.5rem","gutter":"1rem","space-md":"1rem","gutter-desktop":"1.5rem","space-lg":"1.5rem","margin":"1rem","margin-desktop":"2rem"},"fontFamily":{"headline-md":["Inter"],"headline-sm":["Inter"],"body-sm":["Inter"],"body-md":["Inter"],"headline-xl":["Inter"],"headline-xl-mobile":["Inter"],"label-sm":["JetBrains Mono"],"headline-lg":["Inter"],"body-lg":["Inter"],"label-md":["JetBrains Mono"]},"fontSize":{"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-max"><img alt="CivicFlow Traffic Operations Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VDHne-4qFSUzG9sYkLTcUUJVqSjkzipIzl86DYlvSfbgBI06dZl_8EjnzW2XQSb4JDHnYUCpY-gTMx50XEmo0oR4uoA6GafiuTPxxxpy32js3mIUDUlzaK9J4lBpNPxMeYZ9emfyisPjbJjHUgCYbbFUgv04wGcYjHwaoEeoPLZMd_ITChJLZqAVrIk269xMbbp_U41R8KK7gWOTSK1QePLg7DrC2qNR2Zix6olxhda86ZQ7A8QCx3W4Un"/><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">CivicFlow ATCS</span><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>Live Operations • Bengaluru Metropolitan</span></div></div><nav class="hidden xl:flex items-center gap-1 bg-surface-container-low/70 p-1 rounded-full" data-active-classes="bg-primary text-on-primary font-headline-sm rounded-full shadow-sm"><a class="px-3.5 py-1.5 rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" data-path="overview" href="#">Overview Map</a><a class="px-3.5 py-1.5 rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" data-path="vehicle-search" href="#">Vehicle Search &amp; Trajectory</a><a class="px-3.5 py-1.5 rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" data-path="cloned-alerts" href="#">Cloned Plate Alerts</a><a aria-current="page" class="px-3.5 py-1.5 transition-all bg-primary text-on-primary font-headline-sm rounded-full shadow-sm" data-path="analytics" href="#">Traffic Analytics</a></nav><div class="flex items-center gap-space-md min-w-max"><div class="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span><span class="font-label-sm text-label-sm text-secondary font-semibold">99.4% Network Health</span></div><div class="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md"><span class="material-symbols-outlined text-[16px] text-outline">schedule</span><span>14:38:09 IST</span></div><button class="relative p-2 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-[10px] flex items-center justify-center font-bold">3</span></button><div class="flex items-center gap-2.5 pl-2 rounded-full bg-surface-container-low pr-3 py-1"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="text-left"><p class="font-headline-sm text-body-sm text-on-surface leading-tight">Insp. Rajesh Sharma</p><p class="font-label-sm text-[10px] text-outline leading-tight">Desk 04 • Central Control</p></div></div></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full px-gutter-desktop py-space-lg flex flex-col gap-space-lg">
+<!-- Header Control Dock & Filter Strip -->
+<div class="w-full bg-surface-container-lowest/80 backdrop-blur-xl rounded-xl p-space-lg shadow-sm flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm tracking-wider uppercase">Urban ITS Telemetry</span>
+<span class="font-label-sm text-label-sm text-outline">Realtime Ingestion Active (5 min sync)</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Municipal Traffic Flow &amp; Surveillance Analytics</h1>
+</div>
+<!-- Filter Controls & Actions -->
+<div class="flex flex-wrap items-center gap-space-sm w-full xl:w-auto">
+<!-- Filter Pill 1 -->
+<button class="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container transition-all" type="button">
+<span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
+<span class="font-label-sm text-label-sm text-on-surface">Corridor: <span class="font-semibold text-primary">Greater Bengaluru</span></span>
+<span class="material-symbols-outlined text-outline text-[14px]">expand_more</span>
+</button>
+<!-- Filter Pill 2 -->
+<button class="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container transition-all" type="button">
+<span class="material-symbols-outlined text-outline text-[16px]">calendar_today</span>
+<span class="font-label-sm text-label-sm text-on-surface">Range: <span class="font-semibold text-primary">Today (vs. 7d Baseline)</span></span>
+<span class="material-symbols-outlined text-outline text-[14px]">expand_more</span>
+</button>
+<!-- Filter Pill 3 -->
+<button class="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container transition-all" type="button">
+<span class="material-symbols-outlined text-outline text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm text-on-surface">Window: <span class="font-semibold text-secondary">Morning Rush (08:00–11:00)</span></span>
+<span class="material-symbols-outlined text-outline text-[14px]">expand_more</span>
+</button>
+<!-- Primary Action Button -->
+<button class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-on-primary font-headline-sm text-body-sm shadow-sm hover:bg-on-primary-fixed-variant transition-all ml-auto xl:ml-2" id="exportBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span>Download Executive PDF Report</span>
+</button>
+</div>
+</div>
+<!-- Quick Status Metatiles Ribbon -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md w-full">
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-space-md shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-outline">AGGREGATE VEHICLE VOLUME</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">1,482,900</p>
+<span class="font-label-sm text-[11px] text-secondary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> +3.8% vs 7-day average
+          </span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">directions_car</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-space-md shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-outline">METRO CORRIDOR CONGESTION INDEX</p>
+<p class="font-headline-md text-headline-md text-tertiary-container mt-1">64.2 <span class="font-body-sm text-body-sm text-outline">/ 100</span></p>
+<span class="font-label-sm text-[11px] text-tertiary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]">warning</span> Severe at Silk Board &amp; ORR
+          </span>
+</div>
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">traffic</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-space-md shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-outline">AVG NETWORK TRANSIT SPEED</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">26.8 <span class="font-body-sm text-body-sm text-outline">km/h</span></p>
+<span class="font-label-sm text-[11px] text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Urban Target: 28.0 km/h
+          </span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-space-md shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-outline">ACTIVE ANPR SENSORS &amp; CAMERAS</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">1,842 <span class="font-body-sm text-body-sm text-outline">/ 1,860</span></p>
+<span class="font-label-sm text-[11px] text-secondary flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 99.03% Network Uptime
+          </span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+</div>
+</div>
+</div>
+<!-- 2x2 Grid of Primary Analytics Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg w-full">
+<!-- CARD 1: Traffic Density by Hour -->
+<div class="bg-surface-container-lowest/85 backdrop-blur-md rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline">CORRIDOR AGGREGATE</span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-primary">HOURLY DISTRIBUTION</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight mt-0.5">Traffic Density by Hour</h2>
+</div>
+<!-- Peak badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span>Peak: 09:00–10:00 (112.4k veh/h)</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
+            Volumetric vehicle throughput captured across 114 optical sensor junction gates between 06:00 and 22:00.
+          </p>
+<!-- Modern SVG Bar Chart -->
+<div class="w-full relative">
+<div class="flex items-end justify-between h-56 w-full pt-6 pb-2 px-2 bg-surface-container-low/40 rounded-xl relative">
+<!-- Grid lines -->
+<div class="absolute inset-x-2 top-6 h-px bg-outline-variant/30"></div>
+<div class="absolute inset-x-2 top-24 h-px bg-outline-variant/30"></div>
+<div class="absolute inset-x-2 top-40 h-px bg-outline-variant/30"></div>
+<!-- Bar 06:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 22%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">06</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  06:00: 24.2k
+                </div>
+</div>
+<!-- Bar 07:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 48%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">07</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  07:00: 54.0k
+                </div>
+</div>
+<!-- Bar 08:00 (Peak window: Teal) -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-secondary rounded-t-sm group-hover:brightness-110 transition-all shadow-sm" style="height: 84%;"></div>
+<span class="font-label-sm text-[10px] text-secondary font-bold mt-2">08</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  08:00: 94.6k (Peak)
+                </div>
+</div>
+<!-- Bar 09:00 (MAX PEAK: Teal Highlight) -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-secondary-fixed-dim rounded-t-sm group-hover:brightness-110 transition-all shadow-md relative" style="height: 98%;">
+<span class="absolute -top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+</div>
+<span class="font-label-sm text-[10px] text-secondary font-bold mt-2">09</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm z-10">
+                  09:00: 112.4k (Highest)
+                </div>
+</div>
+<!-- Bar 10:00 (Peak window: Teal) -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-secondary rounded-t-sm group-hover:brightness-110 transition-all shadow-sm" style="height: 88%;"></div>
+<span class="font-label-sm text-[10px] text-secondary font-bold mt-2">10</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  10:00: 99.1k
+                </div>
+</div>
+<!-- Bar 11:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 60%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">11</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  11:00: 67.5k
+                </div>
+</div>
+<!-- Bar 12:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 52%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">12</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  12:00: 58.2k
+                </div>
+</div>
+<!-- Bar 13:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 46%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">13</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  13:00: 51.6k
+                </div>
+</div>
+<!-- Bar 14:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 50%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">14</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  14:00: 56.0k
+                </div>
+</div>
+<!-- Bar 15:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 58%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">15</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  15:00: 65.4k
+                </div>
+</div>
+<!-- Bar 16:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 68%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">16</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  16:00: 76.8k
+                </div>
+</div>
+<!-- Bar 17:00 (Evening Peak) -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary rounded-t-sm group-hover:brightness-110 transition-all" style="height: 86%;"></div>
+<span class="font-label-sm text-[10px] text-primary font-medium mt-2">17</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  17:00: 97.2k
+                </div>
+</div>
+<!-- Bar 18:00 (Evening Peak) -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary rounded-t-sm group-hover:brightness-110 transition-all" style="height: 92%;"></div>
+<span class="font-label-sm text-[10px] text-primary font-medium mt-2">18</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  18:00: 104.1k
+                </div>
+</div>
+<!-- Bar 19:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary rounded-t-sm group-hover:brightness-110 transition-all" style="height: 80%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">19</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  19:00: 90.3k
+                </div>
+</div>
+<!-- Bar 20:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 62%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">20</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  20:00: 69.8k
+                </div>
+</div>
+<!-- Bar 21:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 42%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">21</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  21:00: 47.1k
+                </div>
+</div>
+<!-- Bar 22:00 -->
+<div class="flex-1 flex flex-col items-center group relative h-full justify-end cursor-pointer px-1">
+<div class="w-full max-w-[24px] bg-primary-fixed rounded-t-sm group-hover:brightness-95 transition-all" style="height: 28%;"></div>
+<span class="font-label-sm text-[10px] text-outline mt-2">22</span>
+<div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-label-sm pointer-events-none whitespace-nowrap shadow-sm">
+                  22:00: 31.5k
+                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart Legend & Metadata Strip -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-md mt-space-sm bg-surface-container-low/20 rounded-lg p-2.5">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Morning Surge (08:00 - 11:00)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Evening Wave (17:00 - 20:00)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-primary-fixed"></span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Regular Hours</span>
+</div>
+</div>
+<span class="font-label-sm text-[11px] text-outline">Scale: 0k to 120k v/h</span>
+</div>
+</div>
+<!-- CARD 2: Congestion Hotspots Heatmap -->
+<div class="bg-surface-container-lowest/85 backdrop-blur-md rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline">BOTTLENECK MATRIX</span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-secondary">SEVERITY INDEX</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight mt-0.5">Congestion Hotspots</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-[11px] text-outline">Delay Metric:</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[11px]">Minutes Over Baseline</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Cross-corridor bottleneck index assessing delay time impact on key vehicular junctions across distinct diurnal shifts.
+          </p>
+<!-- Heatmap Matrix Grid -->
+<div class="w-full flex flex-col gap-2">
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-2 text-outline font-label-sm text-[11px] px-2">
+<span class="col-span-4">CORRIDOR / JUNCTION</span>
+<span class="col-span-2 text-center">MORNING PEAK</span>
+<span class="col-span-2 text-center">MIDDAY</span>
+<span class="col-span-2 text-center">EVENING PEAK</span>
+<span class="col-span-2 text-center">NIGHT</span>
+</div>
+<!-- Row 1: Outer Ring Road - Marathahalli -->
+<div class="grid grid-cols-12 gap-2 items-center p-1.5 rounded-lg hover:bg-surface-container-low transition-all">
+<div class="col-span-4 min-w-0 pr-1">
+<p class="font-headline-sm text-body-sm text-on-surface truncate">ORR - Marathahalli</p>
+<p class="font-label-sm text-[10px] text-outline truncate">Kadubeesanahalli to Bridge</p>
+</div>
+<!-- Morning Peak: Coral / Heavy -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span class="font-bold">+28 min</span>
+<span class="text-[9px] opacity-75">Heavy Jam</span>
+</div>
+<!-- Midday: Soft Blue / Moderate -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-surface-container-high text-on-primary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+08 min</span>
+<span class="text-[9px] opacity-75">Moderate</span>
+</div>
+<!-- Evening Peak: Coral / Heavy -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span class="font-bold">+34 min</span>
+<span class="text-[9px] opacity-75">Gridlock</span>
+</div>
+<!-- Night: Pale Teal / Free Flow -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-secondary-fixed/50 text-secondary text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+01 min</span>
+<span class="text-[9px] opacity-75">Free Flow</span>
+</div>
+</div>
+<!-- Row 2: Central Silk Board Junction -->
+<div class="grid grid-cols-12 gap-2 items-center p-1.5 rounded-lg hover:bg-surface-container-low transition-all">
+<div class="col-span-4 min-w-0 pr-1">
+<p class="font-headline-sm text-body-sm text-on-surface truncate">Central Silk Board</p>
+<p class="font-label-sm text-[10px] text-outline truncate">Hosur Rd - BTM Interchange</p>
+</div>
+<!-- Morning Peak: Coral / Severe -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span class="font-bold">+32 min</span>
+<span class="text-[9px] opacity-75">Critical</span>
+</div>
+<!-- Midday: Amber/Soft Coral -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-error-container text-tertiary text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+16 min</span>
+<span class="text-[9px] opacity-75">Dense</span>
+</div>
+<!-- Evening Peak: Coral / Severe -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span class="font-bold">+41 min</span>
+<span class="text-[9px] opacity-75">Severe</span>
+</div>
+<!-- Night: Soft Blue -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-surface-container text-on-primary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+04 min</span>
+<span class="text-[9px] opacity-75">Steady</span>
+</div>
+</div>
+<!-- Row 3: MG Road / Trinity Circle -->
+<div class="grid grid-cols-12 gap-2 items-center p-1.5 rounded-lg hover:bg-surface-container-low transition-all">
+<div class="col-span-4 min-w-0 pr-1">
+<p class="font-headline-sm text-body-sm text-on-surface truncate">MG Road / Trinity</p>
+<p class="font-label-sm text-[10px] text-outline truncate">CBD Core - Brigade Cross</p>
+</div>
+<!-- Morning Peak: Soft Blue / Moderate -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-surface-container-high text-on-primary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+12 min</span>
+<span class="text-[9px] opacity-75">Moderate</span>
+</div>
+<!-- Midday: Pale Teal / Free Flow -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-secondary-fixed/50 text-secondary text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+04 min</span>
+<span class="text-[9px] opacity-75">Free Flow</span>
+</div>
+<!-- Evening Peak: Coral -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span class="font-bold">+18 min</span>
+<span class="text-[9px] opacity-75">Congested</span>
+</div>
+<!-- Night: Pale Teal -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-secondary-fixed/50 text-secondary text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+00 min</span>
+<span class="text-[9px] opacity-75">Nominal</span>
+</div>
+</div>
+<!-- Row 4: Hebbal Flyover -->
+<div class="grid grid-cols-12 gap-2 items-center p-1.5 rounded-lg hover:bg-surface-container-low transition-all">
+<div class="col-span-4 min-w-0 pr-1">
+<p class="font-headline-sm text-body-sm text-on-surface truncate">Hebbal Flyover</p>
+<p class="font-label-sm text-[10px] text-outline truncate">KIA Airport Incline</p>
+</div>
+<!-- Morning Peak: Coral / Heavy -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span class="font-bold">+26 min</span>
+<span class="text-[9px] opacity-75">Heavy Jam</span>
+</div>
+<!-- Midday: Soft Blue -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-surface-container-high text-on-primary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+09 min</span>
+<span class="text-[9px] opacity-75">Moderate</span>
+</div>
+<!-- Evening Peak: Amber -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-error-container text-tertiary text-center font-label-sm text-[11px] flex flex-col items-center">
+<span class="font-bold">+22 min</span>
+<span class="text-[9px] opacity-75">Slow Wave</span>
+</div>
+<!-- Night: Pale Teal -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-secondary-fixed/50 text-secondary text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+02 min</span>
+<span class="text-[9px] opacity-75">Free Flow</span>
+</div>
+</div>
+<!-- Row 5: Electronic City Elevated Toll -->
+<div class="grid grid-cols-12 gap-2 items-center p-1.5 rounded-lg hover:bg-surface-container-low transition-all">
+<div class="col-span-4 min-w-0 pr-1">
+<p class="font-headline-sm text-body-sm text-on-surface truncate">E-City Elevated Toll</p>
+<p class="font-label-sm text-[10px] text-outline truncate">Phase 1 Entry / Exit Plaza</p>
+</div>
+<!-- Morning Peak: Soft Blue -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-surface-container-high text-on-primary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+07 min</span>
+<span class="text-[9px] opacity-75">Slight Delay</span>
+</div>
+<!-- Midday: Pale Teal -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-secondary-fixed/50 text-secondary text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+01 min</span>
+<span class="text-[9px] opacity-75">Free Flow</span>
+</div>
+<!-- Evening Peak: Soft Blue -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-surface-container-high text-on-primary-fixed-variant text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+11 min</span>
+<span class="text-[9px] opacity-75">Plaza Queue</span>
+</div>
+<!-- Night: Pale Teal -->
+<div class="col-span-2 py-2 px-1 rounded-lg bg-secondary-fixed/50 text-secondary text-center font-label-sm text-[11px] flex flex-col items-center">
+<span>+00 min</span>
+<span class="text-[9px] opacity-75">Clear</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Heatmap Status Key -->
+<div class="flex items-center justify-between gap-space-sm pt-space-md mt-space-sm bg-surface-container-low/20 rounded-lg p-2.5">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Free Flow (&lt;5m)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim"></span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Moderate (5-15m)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Heavy/Severe (&gt;15m)</span>
+</div>
+</div>
+<span class="font-label-sm text-[11px] text-outline">Updated: 2 mins ago</span>
+</div>
+</div>
+<!-- CARD 3: Origin-Destination Flow Diagram -->
+<div class="bg-surface-container-lowest/85 backdrop-blur-md rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline">COMMUTER CHANNELS</span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-primary">MACRO MOBILITY</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight mt-0.5">Origin-Destination Flow</h2>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">
+              Total Commute Trips: 168k/day
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Directional vehicle volume between primary employment hubs, tech zones, and suburban residential corridors.
+          </p>
+<!-- Flow Diagram Visual Container -->
+<div class="w-full bg-surface-container-low/40 rounded-xl p-space-md relative overflow-hidden">
+<!-- Zones Column Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg relative z-10">
+<!-- ORIGINS (Left Side) -->
+<div class="flex flex-col gap-space-md">
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Origins (Morning Dep.)</span>
+<!-- Zone 1 Box -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<div>
+<p class="font-headline-sm text-body-sm text-on-surface">Zone 1: E-City &amp; South</p>
+<p class="font-label-sm text-[10px] text-outline">Suburbs &amp; Bommasandra</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">58k veh</span>
+</div>
+<!-- Zone 4 Box -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<div>
+<p class="font-headline-sm text-body-sm text-on-surface">Zone 4: North Corridor</p>
+<p class="font-label-sm text-[10px] text-outline">Hebbal, Yelahanka &amp; KIA</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">46k veh</span>
+</div>
+</div>
+<!-- DESTINATIONS (Right Side) -->
+<div class="flex flex-col gap-space-md">
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Destinations (Major Inflow)</span>
+<!-- Zone 3 Box -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim"></span>
+<div>
+<p class="font-headline-sm text-body-sm text-on-surface">Zone 3: Central BD</p>
+<p class="font-label-sm text-[10px] text-outline">MG Road, Vidhana Soudha</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">64k trips</span>
+</div>
+<!-- Zone 2 Box -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-fixed-dim"></span>
+<div>
+<p class="font-headline-sm text-body-sm text-on-surface">Zone 2: Whitefield Corridor</p>
+<p class="font-label-sm text-[10px] text-outline">ITPL, Brookefield &amp; Kadugodi</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">52k trips</span>
+</div>
+</div>
+</div>
+<!-- Inter-zone Flow Bars / Sankey Connectors -->
+<div class="mt-space-md pt-space-sm flex flex-col gap-space-xs">
+<span class="font-label-sm text-[10px] text-outline uppercase tracking-wider">Primary Arterial Channels</span>
+<!-- Flow 1: South to CBD -->
+<div class="p-2 rounded bg-surface-container-lowest/90 flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-headline-sm text-[13px] text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span> South Suburbs <span class="material-symbols-outlined text-[14px] text-outline">arrow_forward</span> CBD Core
+                  </span>
+<span class="font-label-sm text-label-sm text-primary font-bold">42,000 trips/day (25.0%)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 72%;"></div>
+</div>
+</div>
+<!-- Flow 2: CBD to Whitefield -->
+<div class="p-2 rounded bg-surface-container-lowest/90 flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-headline-sm text-[13px] text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> CBD Core <span class="material-symbols-outlined text-[14px] text-outline">arrow_forward</span> Whitefield Tech Hub
+                  </span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">38,000 trips/day (22.6%)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Flow 3: North Corridor to CBD -->
+<div class="p-2 rounded bg-surface-container-lowest/90 flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-headline-sm text-[13px] text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span> North (Hebbal/Airport) <span class="material-symbols-outlined text-[14px] text-outline">arrow_forward</span> CBD
+                  </span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">29,400 trips/day (17.5%)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full rounded-full" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Flow 4: South to Whitefield via ORR -->
+<div class="p-2 rounded bg-surface-container-lowest/90 flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-headline-sm text-[13px] text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span> South <span class="material-symbols-outlined text-[14px] text-outline">arrow_forward</span> Whitefield (via ORR)
+                  </span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">24,600 trips/day (14.6%)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed-dim h-full rounded-full" style="width: 42%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer note -->
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low/20 rounded-lg p-2.5">
+<span class="font-label-sm text-[11px] text-outline">Source: FastTag Toll &amp; ANPR Ingress Trajectory</span>
+<span class="font-label-sm text-[11px] text-primary font-medium">Auto-calibrated hourly</span>
+</div>
+</div>
+<!-- CARD 4: Average Speed by Route -->
+<div class="bg-surface-container-lowest/85 backdrop-blur-md rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline">VELOCITY TELEMETRY</span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-secondary">REAL-TIME MONITOR</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight mt-0.5">Average Speed by Route</h2>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>12 min Rolling Window</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Speed performance across major key corridors throughout the operating day comparing signalized vs. elevated freeways.
+          </p>
+<!-- Multi-Line SVG Chart -->
+<div class="w-full bg-surface-container-low/40 rounded-xl p-space-md">
+<div class="relative h-56 w-full">
+<!-- Y-Axis Speed Marks -->
+<div class="absolute inset-y-0 left-0 flex flex-col justify-between text-outline font-label-sm text-[10px] pointer-events-none">
+<span>70 km/h</span>
+<span>50 km/h</span>
+<span>30 km/h</span>
+<span>10 km/h</span>
+</div>
+<!-- Chart Canvas Area (Left padding 40px for axis) -->
+<div class="ml-10 h-full relative">
+<!-- Horizontal Guide Lines -->
+<div class="absolute inset-x-0 top-0 h-px bg-outline-variant/30"></div>
+<div class="absolute inset-x-0 top-1/3 h-px bg-outline-variant/30"></div>
+<div class="absolute inset-x-0 top-2/3 h-px bg-outline-variant/30"></div>
+<div class="absolute inset-x-0 bottom-0 h-px bg-outline-variant/30"></div>
+<!-- SVG Paths -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 600 200">
+<!-- Line 2: Elevated Toll (Steady 58-62 km/h) -> Muted Teal -->
+<path d="M 0,40 Q 150,38 300,42 T 600,38" fill="none" stroke="#006a61" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="300" cy="42" fill="#006a61" r="3.5"></circle>
+<circle cx="600" cy="38" fill="#006a61" r="3.5"></circle>
+<!-- Line 1: ORR Bellandur to Hebbal (Dips to 14 km/h at 9AM, up to 42 midday) -> Soft Blue -->
+<path d="M 0,80 C 100,85 140,165 200,165 C 280,165 320,95 400,95 C 480,95 520,150 600,140" fill="none" stroke="#2563eb" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- 9 AM DIP marker -->
+<circle cx="200" cy="165" fill="#ba1a1a" r="4.5"></circle>
+<circle cx="400" cy="95" fill="#2563eb" r="3.5"></circle>
+<!-- Line 3: Old Airport Road (Steady 18-28 km/h) -> Slate / Outline -->
+<path d="M 0,140 C 100,135 200,150 300,138 C 400,125 500,145 600,135" fill="none" stroke="#737686" stroke-dasharray="4 3" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<!-- Annotation on ORR Dip -->
+<div class="absolute top-[138px] left-[150px] bg-error-container text-tertiary px-2 py-0.5 rounded text-[10px] font-label-sm shadow-sm pointer-events-none">
+                  09:00 AM • 14 km/h
+                </div>
+</div>
+<!-- X-Axis Labels -->
+<div class="ml-10 flex justify-between pt-2 text-outline font-label-sm text-[10px]">
+<span>06:00</span>
+<span>09:00</span>
+<span>12:00</span>
+<span>15:00</span>
+<span>18:00</span>
+<span>21:00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Legend with Delays & Speeds -->
+<div class="flex flex-col gap-space-xs pt-space-md mt-space-sm bg-surface-container-low/20 rounded-lg p-2.5">
+<!-- Route 1 -->
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-0.5 bg-primary-container"></span>
+<span class="font-headline-sm text-body-sm text-on-surface">Outer Ring Road (Bellandur to Hebbal)</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-tertiary font-bold">14 km/h (9 AM)</span>
+<span class="text-outline">Midday: 42 km/h</span>
+<span class="text-on-surface-variant font-medium">Delay Index: 2.8x</span>
+</div>
+</div>
+<!-- Route 2 -->
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-0.5 bg-secondary"></span>
+<span class="font-headline-sm text-body-sm text-on-surface">Electronic City Elevated Expressway</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-secondary font-bold">58–62 km/h</span>
+<span class="text-outline">Steady flow</span>
+<span class="text-on-surface-variant font-medium">Delay Index: 1.0x</span>
+</div>
+</div>
+<!-- Route 3 -->
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-0.5 bg-outline" style="border-top: 2px dashed #737686;"></span>
+<span class="font-headline-sm text-body-sm text-on-surface">Old Airport Road / Domlur</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-on-surface font-semibold">18–28 km/h</span>
+<span class="text-outline">Congested</span>
+<span class="text-on-surface-variant font-medium">Delay Index: 1.9x</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Context & Incident Correlation Strip -->
+<div class="w-full bg-surface-container-lowest/80 backdrop-blur-xl rounded-xl p-space-lg shadow-sm flex flex-col xl:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">insights</span>
+</div>
+<div>
+<p class="font-headline-sm text-body-sm text-on-surface">Automated ITS Operations Recommendation</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Adaptive signal timing adjustment advised for ORR Bellandur junction (+14s Green Wave toward Silk Board).
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full xl:w-auto justify-end">
+<button class="px-4 py-1.5 rounded-full bg-surface-container font-headline-sm text-body-sm text-on-surface hover:bg-surface-container-high transition-all" type="button">
+          Review Historical Sim
+        </button>
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-headline-sm text-body-sm shadow-sm hover:bg-on-primary-fixed-variant transition-all" type="button">
+          Deploy Green Wave Timing
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple toast feedback for Executive PDF generation
+  document.getElementById('exportBtn').addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Generating Report...</span>';
+    this.disabled = true;
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span><span>Report Queued for Download</span>';
+      setTimeout(() => {
+        this.innerHTML = originalText;
+        this.disabled = false;
+      }, 2500);
+    }, 1200);
+  });
+</script></main><footer class="w-full bg-surface-container-lowest/90 backdrop-blur-md py-6"><div class="w-full px-gutter-desktop flex flex-col md:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-body-sm text-on-surface">CivicFlow ATCS</span><span class="font-body-sm text-body-sm text-outline">| Municipal Traffic Operations Infrastructure</span></div><div class="flex items-center gap-space-md font-label-sm text-label-sm text-outline"><span>Node: BLR-CC-09</span><span>Data Feed: Active (120 FPS)</span><span>© 2025 Karnataka State Police &amp; BBMP ITS</span></div></div></footer></body></html>

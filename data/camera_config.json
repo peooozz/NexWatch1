@@ -1,0 +1,62 @@
+{
+  "CAM-ECT-002": {
+    "name": "Electronic City Elevated Tollway",
+    "lat": 12.8452,
+    "lon": 77.6602,
+    "road_segment": "Hosur Expressway Sector 1"
+  },
+  "CAM-SLK-009": {
+    "name": "Central Silk Board Flyover",
+    "lat": 12.9177,
+    "lon": 77.6238,
+    "road_segment": "Outer Ring Road Sector 1"
+  },
+  "CAM-KOR-047": {
+    "name": "80 Feet Road, Koramangala",
+    "lat": 12.9352,
+    "lon": 77.6245,
+    "road_segment": "Koramangala Sony World Cross"
+  },
+  "CAM-IND-110": {
+    "name": "100 Feet Road, Indiranagar",
+    "lat": 12.9698,
+    "lon": 77.641,
+    "road_segment": "Indiranagar Domlur Link"
+  },
+  "CAM-MGR-088": {
+    "name": "MG Road Trinity Circle",
+    "lat": 12.9734,
+    "lon": 77.616,
+    "road_segment": "CBD Core Corridor"
+  },
+  "CAM-ORR-204": {
+    "name": "Hebbal Outer Ring Road",
+    "lat": 13.0358,
+    "lon": 77.597,
+    "road_segment": "Airport Expressway Incline"
+  },
+  "CAM-WHT-031": {
+    "name": "Whitefield Main Road (ITPL Gate)",
+    "lat": 12.986,
+    "lon": 77.731,
+    "road_segment": "ITPL Tech Corridor"
+  },
+  "CAM-402": {
+    "name": "Midtown Core Sector 04",
+    "lat": 12.961,
+    "lon": 77.632,
+    "road_segment": "Core Metronet Spur"
+  },
+  "CAM-118": {
+    "name": "Harbor / Lake Tunnel Bypass",
+    "lat": 12.925,
+    "lon": 77.655,
+    "road_segment": "Harbor Express Bypass"
+  },
+  "CAM-889": {
+    "name": "Old Airport Road Intercept Gate",
+    "lat": 12.958,
+    "lon": 77.671,
+    "road_segment": "HAL Airport Corridor"
+  }
+}

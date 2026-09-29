@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CivicFlow ATCS · Municipal Traffic Operations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <!-- Exact Stitch Tailwind CDN Runtime -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#003ea8",
+              "surface-bright": "#faf8ff",
+              "error": "#ba1a1a",
+              "on-primary-fixed": "#00174b",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "primary-container": "#2563eb",
+              "surface-container-lowest": "#ffffff",
+              "secondary": "#006a61",
+              "surface-container-low": "#f2f3ff",
+              "on-surface": "#131b2e",
+              "outline": "#737686",
+              "surface": "#faf8ff",
+              "on-tertiary-container": "#ffecec",
+              "primary-fixed": "#dbe1ff",
+              "surface-tint": "#0053db",
+              "inverse-primary": "#b4c5ff",
+              "secondary-fixed-dim": "#6bd8cb",
+              "secondary-fixed": "#89f5e7",
+              "on-error": "#ffffff",
+              "tertiary": "#ad0033",
+              "surface-container-highest": "#dae2fd",
+              "primary": "#004ac6",
+              "error-container": "#ffdad6",
+              "secondary-container": "#86f2e4",
+              "background": "#faf8ff",
+              "tertiary-fixed-dim": "#ffb2b7",
+              "on-background": "#131b2e",
+              "outline-variant": "#c3c6d7",
+              "tertiary-fixed": "#ffdadb",
+              "surface-container": "#eaedff",
+              "inverse-on-surface": "#eef0ff",
+              "on-tertiary-fixed-variant": "#92002a",
+              "on-secondary-fixed-variant": "#005049",
+              "on-secondary-fixed": "#00201d",
+              "surface-dim": "#d2d9f4",
+              "on-surface-variant": "#434655",
+              "tertiary-container": "#d22348",
+              "on-secondary-container": "#006f66",
+              "on-primary-container": "#eeefff",
+              "surface-container-high": "#e2e7ff",
+              "on-error-container": "#93000a",
+              "surface-variant": "#dae2fd",
+              "primary-fixed-dim": "#b4c5ff",
+              "inverse-surface": "#283044",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed": "#40000d",
+              brand: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                500: '#2563eb',
+                600: '#1d4ed8',
+                700: '#1e40af',
+              }
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              "3xl": "1.5rem",
+              full: "9999px"
+            },
+            spacing: {
+              "space-xl": "2rem",
+              "space-xs": "0.25rem",
+              "space-sm": "0.5rem",
+              gutter: "1rem",
+              "space-md": "1rem",
+              "gutter-desktop": "1.5rem",
+              "space-lg": "1.5rem",
+              margin: "1rem",
+              "margin-desktop": "2rem"
+            },
+            fontFamily: {
+              "headline-md": ["Inter", "sans-serif"],
+              "headline-sm": ["Inter", "sans-serif"],
+              "body-sm": ["Inter", "sans-serif"],
+              "body-md": ["Inter", "sans-serif"],
+              "headline-xl": ["Inter", "sans-serif"],
+              "headline-xl-mobile": ["Inter", "sans-serif"],
+              "label-sm": ["JetBrains Mono", "monospace"],
+              "headline-lg": ["Inter", "sans-serif"],
+              "body-lg": ["Inter", "sans-serif"],
+              "label-md": ["JetBrains Mono", "monospace"],
+              sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+              body: ['Inter', 'sans-serif']
+            },
+            fontSize: {
+              "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
+              "headline-sm": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "600" }],
+              "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "400" }],
+              "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+              "headline-xl": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }],
+              "headline-xl-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "600" }],
+              "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.03em", fontWeight: "500" }],
+              "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "600" }],
+              "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }],
+              "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }]
+            }
+          }
+        }
+      };
+    </script>
+  </head>
+  <body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nexwatch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nexwatch-app
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - SPEED_THRESHOLD_KMH=120.0
+      - SIMILARITY_THRESHOLD=0.60
+    restart: unless-stopped

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<title>Metro Sentinel · Civic Traffic Intelligence</title>
+<style>
+    @layer base {
+      html, body { margin:0; padding:0; }
+      body { overscroll-behavior:none; }
+      main>:first-child { margin-top:0!important; }
+      main>:last-child { margin-bottom:0!important; }
+    }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.4); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.6); }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 12px -2px rgba(15, 23, 42, 0.02);
+    }
+    .glass-card-subtle {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.03);
+    }
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+    .map-mesh-bg {
+      background-color: #f1f5f9;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(224, 238, 255, 0.7) 0, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(230, 244, 241, 0.5) 0, transparent 50%);
+    }
+  </style>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              700: '#1e40af',
+            }
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gradient-to-br from-[#f1f5f9] via-[#edf2f9] to-[#e8eef7] text-slate-800 font-sans min-h-screen selection:bg-blue-100 selection:text-blue-900 antialiased overflow-x-hidden">
+<!-- Top Glassmorphic Navigation Bar -->
+<header class="fixed top-0 inset-x-0 h-16 z-50 glass-panel border-b border-white/60 px-6 flex items-center justify-between transition-all">
+<!-- Brand Info -->
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+<span class="material-symbols-outlined text-[22px]">hub</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-bold text-[15px] tracking-tight text-slate-900">Metro Sentinel</span>
+<span class="text-slate-300">/</span>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Civic Intelligence</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="text-[11px] font-medium text-slate-500">Grid Core #09 · Operations Live</span>
+</div>
+</div>
+</div>
+<!-- Center Navigation Tabs -->
+<nav class="hidden md:flex items-center gap-1.5 p-1 rounded-2xl bg-slate-200/50 backdrop-blur-md border border-white/70">
+<a class="flex items-center gap-2 px-4 py-1.5 rounded-xl font-semibold text-xs transition-all bg-white text-blue-700 shadow-sm shadow-slate-900/5" href="#">
+<span class="material-symbols-outlined text-[16px]">map</span>
+<span>Overview Map</span>
+<span class="px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-blue-50 text-blue-600 border border-blue-100">Live</span>
+</a>
+<a class="flex items-center gap-2 px-4 py-1.5 rounded-xl font-medium text-xs text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all" href="#">
+<span class="material-symbols-outlined text-[16px]">search_insights</span>
+<span>Vehicle Search</span>
+</a>
+<a class="flex items-center gap-2 px-4 py-1.5 rounded-xl font-medium text-xs text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all" href="#">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span>
+<span>Anomaly Alerts</span>
+<span class="px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-rose-50 text-rose-600 border border-rose-100">3 Urgent</span>
+</a>
+<a class="flex items-center gap-2 px-4 py-1.5 rounded-xl font-medium text-xs text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all" href="#">
+<span class="material-symbols-outlined text-[16px]">monitoring</span>
+<span>System Analytics</span>
+</a>
+</nav>
+<!-- Top Right Actions & User Profile -->
+<div class="flex items-center gap-3">
+<!-- Fast Quick Action: Emergency Broadcast -->
+<button class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-50 to-orange-50 border border-rose-200/70 text-rose-700 text-xs font-semibold hover:shadow-md hover:shadow-rose-500/10 transition-all">
+<span class="material-symbols-outlined text-[16px] text-rose-600">emergency</span>
+<span>Broadcast Notice</span>
+</button>
+<!-- System Health Indicator -->
+<div class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/70 border border-white/80 text-xs text-slate-600">
+<span class="material-symbols-outlined text-[16px] text-emerald-500">wifi_tethering</span>
+<span class="font-medium text-slate-700">99.98% Sat-Link</span>
+</div>
+<!-- Notifications -->
+<button class="relative w-9 h-9 rounded-xl bg-white/80 border border-white hover:bg-white flex items-center justify-center text-slate-600 transition shadow-sm">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-rose-500"></span>
+</button>
+<!-- User Chip -->
+<div class="flex items-center gap-2 pl-2 border-l border-slate-200/80">
+<img alt="Officer D. Chen" class="w-8 h-8 rounded-xl object-cover ring-2 ring-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtbgRzDE1c2bqmjZxKiHD2Ps8Po2DbFrbXQgFoxmzPKQUBXF6kwk1LmMJdPX5Y2pVoFK_CelVOxFeRAxpjO0iRMQc5AjtJJYHcsMFfoe57zGga-EG5qpQmcQ9zHoHhWmF4SywUjOHxkEyL_5mjlrsLIEZyN15TkzEwOy-6pID8P0QcSnehBecL7WWzm5gZWLYB9aRoQ2r273UgkEr9noQeJ-mmCX9eFQLany3qdt8xAjSt9TUFT4Sp"/>
+<div class="hidden 2xl:flex flex-col text-left">
+<span class="text-xs font-bold text-slate-800 leading-tight">D. Chen</span>
+<span class="text-[10px] font-medium text-slate-400">Chief Dispatcher</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Left Sidebar Mini Rail Navigation -->
+<aside class="fixed left-0 top-16 bottom-0 w-20 xl:w-60 z-40 glass-panel border-r border-white/70 flex flex-col justify-between p-3.5 transition-all">
+<div class="space-y-4">
+<div class="px-2 pt-2 hidden xl:block">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Navigation Rail</span>
+</div>
+<nav class="space-y-1.5">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-blue-50/90 text-blue-700 font-semibold text-xs border border-blue-200/50 shadow-sm transition" href="#">
+<span class="material-symbols-outlined text-[20px]">layers</span>
+<span class="hidden xl:inline">GIS Grid Map</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium text-xs transition" href="#">
+<span class="material-symbols-outlined text-[20px] text-slate-400">radar</span>
+<span class="hidden xl:inline">Vehicle Trajectory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium text-xs transition" href="#">
+<span class="material-symbols-outlined text-[20px] text-slate-400">emergency_share</span>
+<span class="hidden xl:inline">Incident Dispatch</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium text-xs transition" href="#">
+<span class="material-symbols-outlined text-[20px] text-slate-400">query_stats</span>
+<span class="hidden xl:inline">Telemetry &amp; Sensors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium text-xs transition" href="#">
+<span class="material-symbols-outlined text-[20px] text-slate-400">shield_person</span>
+<span class="hidden xl:inline">Patrol Units (12)</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Left Card Mini Status -->
+<div class="glass-card-subtle p-3 rounded-2xl hidden xl:flex flex-col gap-2">
+<div class="flex items-center justify-between text-xs font-semibold text-slate-700">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-blue-600">traffic</span>
+<span>Core Flow</span>
+</span>
+<span class="text-emerald-600 font-bold">Stable</span>
+</div>
+<div class="w-full bg-slate-200/70 h-1.5 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-blue-500 to-emerald-500 h-full w-[84%] rounded-full"></div>
+</div>
+<span class="text-[10px] text-slate-400">Grid sync: 14:28:49 UTC</span>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="pl-20 xl:pl-60 pt-16 min-h-screen">
+<main class="p-4 md:p-6 space-y-5 max-w-[1920px] mx-auto">
+<!-- Top KPI Row: 4 Clean Floating Frosted Glass Metric Cards -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1: Cameras Active -->
+<div class="glass-panel p-4 rounded-2xl relative overflow-hidden transition-all hover:-translate-y-0.5 hover:shadow-lg">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Cameras Active</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-200/60 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              99.4% Uptime
+            </span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-2xl font-extrabold text-slate-900 tracking-tight">4,892</span>
+<span class="text-xs font-medium text-slate-400">/ 4,920 total</span>
+</div>
+<div class="flex items-center justify-between mt-2 text-xs text-slate-500 pt-2 border-t border-slate-100">
+<span>Core Metronet Online</span>
+<span class="text-emerald-600 font-semibold">+14 restored</span>
+</div>
+</div>
+<!-- Card 2: Plates Monitored Today -->
+<div class="glass-panel p-4 rounded-2xl relative overflow-hidden transition-all hover:-translate-y-0.5 hover:shadow-lg">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Plates Monitored Today</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-600 border border-blue-200/60 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">trending_up</span>
+              +6.4%
+            </span>
+</div>
+<div class="flex items-baseline justify-between mt-2">
+<span class="text-2xl font-extrabold text-slate-900 tracking-tight">1.43M</span>
+<!-- Soft sparkline -->
+<svg class="w-16 h-6 text-blue-500 shrink-0" fill="none" viewbox="0 0 64 20">
+<path d="M1 16L12 13L24 15L34 8L44 11L54 3L63 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M1 16L12 13L24 15L34 8L44 11L54 3L63 6V20H1Z" fill="currentColor" fill-opacity="0.1"></path>
+</svg>
+</div>
+<div class="flex items-center justify-between mt-2 text-xs text-slate-500 pt-2 border-t border-slate-100">
+<span>OCR Confidence: <strong class="text-slate-700">99.1%</strong></span>
+<span class="text-slate-400">840/min peak</span>
+</div>
+</div>
+<!-- Card 3: Active Incidents -->
+<div class="glass-panel p-4 rounded-2xl relative overflow-hidden transition-all hover:-translate-y-0.5 hover:shadow-lg">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Active Incidents</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-rose-50 text-rose-600 border border-rose-200/70">
+              Action Required
+            </span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-2xl font-extrabold text-slate-900 tracking-tight">19</span>
+<span class="text-xs font-medium text-slate-400">live queued</span>
+</div>
+<div class="flex items-center gap-2 mt-2 text-xs pt-2 border-t border-slate-100">
+<span class="px-1.5 py-0.5 rounded bg-rose-100/70 text-rose-700 font-bold text-[10px]">3 Urgent</span>
+<span class="px-1.5 py-0.5 rounded bg-amber-100/70 text-amber-800 font-bold text-[10px]">7 Priority</span>
+<span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium text-[10px]">9 Standard</span>
+</div>
+</div>
+<!-- Card 4: Avg Network Velocity -->
+<div class="glass-panel p-4 rounded-2xl relative overflow-hidden transition-all hover:-translate-y-0.5 hover:shadow-lg">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Avg. Network Velocity</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-600 border border-slate-200/70">
+              Normal Flow
+            </span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-2xl font-extrabold text-slate-900 tracking-tight">41.2</span>
+<span class="text-xs font-semibold text-slate-400">km/h</span>
+</div>
+<div class="flex items-center justify-between mt-2 text-xs text-slate-500 pt-2 border-t border-slate-100">
+<span class="text-amber-600 font-semibold">-4.8 km/h variance</span>
+<span class="text-slate-400">I-88 Midtown Spur</span>
+</div>
+</div>
+</section>
+<!-- Main Operational Section: Map (72%) + Live Feed (28%) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+<!-- Central High-Res Clean Map Viewport -->
+<div class="lg:col-span-8 xl:col-span-8 flex flex-col relative glass-panel rounded-3xl overflow-hidden min-h-[680px] h-[calc(100vh-230px)] shadow-xl border border-white">
+<!-- Top Floating Map Control Header -->
+<div class="absolute top-4 inset-x-4 z-20 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+<!-- Map Mode / Breadcrumb Pill -->
+<div class="glass-pill px-3.5 py-2 rounded-2xl flex items-center gap-2.5 pointer-events-auto">
+<span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+<span class="text-xs font-bold text-slate-800">Metropolitan GIS Vector Grid</span>
+<span class="text-slate-300">|</span>
+<span class="text-[11px] font-medium text-slate-500">Sector 04 Core</span>
+<span class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold rounded-lg bg-slate-100 text-slate-600">37.77° N, 122.41° W</span>
+</div>
+<!-- Filter Pills -->
+<div class="glass-pill p-1 rounded-2xl flex items-center gap-1 pointer-events-auto">
+<button class="px-3 py-1 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition" id="toggle-heatmap">
+                Heatmap [ON]
+              </button>
+<button class="px-3 py-1 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/80 transition">
+                ANPR Nodes (64)
+              </button>
+<button class="hidden md:inline-block px-3 py-1 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/80 transition">
+                Speed Sensors
+              </button>
+<button class="px-3 py-1 rounded-xl text-xs font-semibold text-emerald-700 bg-emerald-50/70 hover:bg-emerald-100/70 transition">
+                Patrols (12)
+              </button>
+</div>
+</div>
+<!-- Clean Styled Light-Mode Cartographic SVG Map -->
+<div class="relative w-full h-full map-mesh-bg overflow-hidden select-none cursor-grab active:cursor-grabbing" id="gis-map-canvas">
+<!-- Soft Coordinate Fine Grid -->
+<svg class="absolute inset-0 w-full h-full opacity-35 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="60" id="lightGrid" patternunits="userSpaceOnUse" width="60">
+<path d="M 60 0 L 0 0 0 60" fill="none" stroke="#cbd5e1" stroke-dasharray="3,3" stroke-width="0.7"></path>
+</pattern>
+</defs>
+<rect fill="url(#lightGrid)" height="100%" width="100%"></rect>
+</svg>
+<!-- Geographic Water Channels & Urban Blocks -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="softRiverGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#bfdbfe" stop-opacity="0.55"></stop>
+<stop offset="100%" stop-color="#93c5fd" stop-opacity="0.45"></stop>
+</lineargradient>
+<lineargradient id="arterialHeat" x1="0%" x2="100%" y1="100%" y2="0%">
+<stop offset="0%" stop-color="#3b82f6" stop-opacity="0.9"></stop>
+<stop offset="45%" stop-color="#f59e0b" stop-opacity="0.95"></stop>
+<stop offset="85%" stop-color="#ef4444" stop-opacity="1"></stop>
+</lineargradient>
+</defs>
+<!-- River / Bay Geometry (Elegant pale slate blue) -->
+<path d="M-50,540 C320,510 520,360 720,280 C920,190 1200,150 1600,130 L1600,430 C1200,410 900,470 700,560 C500,660 320,700 -50,760 Z" fill="url(#softRiverGrad)"></path>
+<path d="M920,190 C980,80 1150,20 1350,-20 L1420,-20 C1280,60 1120,120 1040,240 Z" fill="url(#softRiverGrad)" opacity="0.8"></path>
+<!-- Secondary Urban Road Grid (Clean slate-300 lines) -->
+<g opacity="0.75" stroke="#cbd5e1" stroke-width="1.6">
+<line x1="0" x2="900" y1="120" y2="120"></line>
+<line x1="0" x2="800" y1="210" y2="210"></line>
+<line x1="0" x2="720" y1="300" y2="300"></line>
+<line x1="0" x2="650" y1="390" y2="390"></line>
+<line x1="0" x2="560" y1="480" y2="480"></line>
+<line x1="850" x2="1600" y1="620" y2="620"></line>
+<line x1="780" x2="1600" y1="710" y2="710"></line>
+<line x1="1020" x2="1600" y1="260" y2="260"></line>
+<line x1="1100" x2="1600" y1="350" y2="350"></line>
+<line x1="140" x2="140" y1="0" y2="600"></line>
+<line x1="260" x2="260" y1="0" y2="580"></line>
+<line x1="380" x2="380" y1="0" y2="540"></line>
+<line x1="500" x2="500" y1="0" y2="460"></line>
+<line x1="620" x2="620" y1="0" y2="360"></line>
+<line x1="1180" x2="1180" y1="300" y2="900"></line>
+<line x1="1300" x2="1300" y1="280" y2="900"></line>
+<line x1="1420" x2="1420" y1="260" y2="900"></line>
+</g>
+<!-- Outer Peripheral Ring Roads (Crisp White + Blue) -->
+<path d="M 40,-20 C 180,240 220,620 380,820" fill="none" stroke="#94a3b8" stroke-dasharray="6,4" stroke-width="2.5"></path>
+<path d="M 800,-20 C 1200,60 1480,260 1550,820" fill="none" stroke="#94a3b8" stroke-width="3"></path>
+<!-- Highway I-88 (Primary Arterial Corridor with Congestion) -->
+<path d="M 0,440 C 260,420 540,320 740,240 C 960,150 1280,110 1600,80" fill="none" filter="blur(4px)" opacity="0.6" stroke="#fecdd3" stroke-width="12"></path>
+<path d="M 0,440 C 260,420 540,320 740,240 C 960,150 1280,110 1600,80" fill="none" stroke="url(#arterialHeat)" stroke-linecap="round" stroke-width="4"></path>
+<!-- Suspension Bridge Span Link -->
+<path d="M 640,460 L 860,210" fill="none" stroke="#f87171" stroke-width="4.5"></path>
+<line stroke="#475569" stroke-width="1.8" x1="680" x2="700" y1="415" y2="400"></line>
+<line stroke="#475569" stroke-width="1.8" x1="740" x2="760" y1="345" y2="330"></line>
+<line stroke="#475569" stroke-width="1.8" x1="800" x2="820" y1="280" y2="265"></line>
+<!-- Anomaly Correlation Velocity Arc -->
+<path class="animate-pulse" d="M 525,258 C 650,180 820,130 920,121" fill="none" stroke="#e11d48" stroke-dasharray="6,4" stroke-width="2"></path>
+</svg>
+<!-- Subtle Light Heatmap Glow Blobs -->
+<div class="absolute top-[28%] left-[45%] w-48 h-48 rounded-full bg-rose-400/20 filter blur-3xl pointer-events-none"></div>
+<div class="absolute top-[48%] left-[34%] w-36 h-36 rounded-full bg-amber-400/20 filter blur-2xl pointer-events-none"></div>
+<!-- Floating Elegant Impossible Speed Pill Callout -->
+<div class="absolute top-[20%] left-[51%] z-30 flex items-center gap-2 px-3 py-1.5 glass-panel rounded-xl shadow-lg border border-rose-200">
+<span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-rose-700 uppercase tracking-wider">Duplicate Speed Flag</span>
+<span class="text-xs font-semibold text-slate-800">Tag 7XYZ892 · 14.2 mi in 90s</span>
+</div>
+</div>
+<!-- Sleek Minimalist Camera Node Markers -->
+<!-- Node 1: CAM-402 (Active Midtown Critical Node) -->
+<div class="absolute top-[34%] left-[48%] -translate-x-1/2 -translate-y-1/2 z-30 group cursor-pointer" onclick="selectCamera('CAM-402', '98.4%', '54 veh/min', 'Midtown Core')">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute h-8 w-8 rounded-full bg-blue-500 opacity-30"></span>
+<span class="absolute h-6 w-6 rounded-full bg-blue-100 ring-2 ring-blue-500/40"></span>
+<div class="relative w-4 h-4 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-md">
+<span class="w-1.5 h-1.5 bg-white rounded-full"></span>
+</div>
+</div>
+<div class="absolute top-6 left-1/2 -translate-x-1/2 px-2 py-0.5 glass-pill rounded-md text-[11px] font-bold text-blue-900 whitespace-nowrap shadow-sm border border-blue-200/60">
+                CAM-402 (Active)
+              </div>
+</div>
+<!-- Node 2: CAM-118 (Harbor Bridge) -->
+<div class="absolute top-[49%] left-[39%] -translate-x-1/2 -translate-y-1/2 z-30 group cursor-pointer" onclick="selectCamera('CAM-118', '99.7%', '82 veh/min', 'Harbor Span')">
+<div class="relative flex items-center justify-center">
+<div class="relative w-3.5 h-3.5 bg-white border-2 border-slate-700 rounded-full flex items-center justify-center shadow-sm">
+<div class="w-1.5 h-1.5 bg-slate-700 rounded-full"></div>
+</div>
+</div>
+<div class="absolute top-5 left-1/2 -translate-x-1/2 px-2 py-0.5 glass-pill rounded-md text-[10px] font-semibold text-slate-700 whitespace-nowrap shadow-sm">
+                CAM-118
+              </div>
+</div>
+<!-- Node 3: CAM-889 (East Arterial) -->
+<div class="absolute top-[22%] left-[64%] -translate-x-1/2 -translate-y-1/2 z-30 group cursor-pointer" onclick="selectCamera('CAM-889', '99.2%', '68 veh/min', 'East Arterial')">
+<div class="relative flex items-center justify-center">
+<div class="relative w-3.5 h-3.5 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center shadow-sm">
+<div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+</div>
+</div>
+<div class="absolute top-5 left-1/2 -translate-x-1/2 px-2 py-0.5 glass-pill rounded-md text-[10px] font-semibold text-slate-700 whitespace-nowrap shadow-sm">
+                CAM-889
+              </div>
+</div>
+<!-- Node 4: CAM-204 (Airport Expressway Duplicate Lock) -->
+<div class="absolute top-[16%] left-[84%] -translate-x-1/2 -translate-y-1/2 z-30 group cursor-pointer" onclick="selectCamera('CAM-204', '97.9%', '39 veh/min', 'Airport Junction')">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute h-7 w-7 rounded-full bg-rose-500 opacity-40"></span>
+<div class="relative w-3.5 h-3.5 bg-rose-600 rounded-full ring-2 ring-white shadow-md"></div>
+</div>
+<div class="absolute top-5 left-1/2 -translate-x-1/2 px-2 py-0.5 glass-pill rounded-md text-[10px] font-bold text-rose-700 whitespace-nowrap shadow-sm border border-rose-200">
+                CAM-204 · Match
+              </div>
+</div>
+<!-- Node 5: CAM-077 (Ramp 4B) -->
+<div class="absolute top-[68%] left-[29%] -translate-x-1/2 -translate-y-1/2 z-30 group cursor-pointer" onclick="selectCamera('CAM-077', '99.9%', '12 veh/min', 'Ramp 4B West')">
+<div class="relative flex items-center justify-center">
+<div class="relative w-3 h-3 bg-amber-500 rounded-full ring-2 ring-white shadow-sm"></div>
+</div>
+<div class="absolute top-4 left-1/2 -translate-x-1/2 px-1.5 py-0.5 glass-pill rounded-md text-[10px] font-medium text-slate-600 whitespace-nowrap shadow-sm">
+                CAM-077
+              </div>
+</div>
+<!-- Sleek Glass Floating Preview Card for Selected Camera (Bottom Left) -->
+<div class="absolute bottom-16 left-4 z-30 w-80 glass-panel rounded-2xl p-3 shadow-2xl border border-white transition-all">
+<div class="flex items-center justify-between pb-2 border-b border-slate-100">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-xs font-bold text-slate-800" id="active-cam-title">Node 402 - Midtown Core</span>
+</div>
+<span class="px-1.5 py-0.5 text-[10px] font-bold rounded-md bg-blue-50 text-blue-700 border border-blue-200/50">1080p 60fps</span>
+</div>
+<!-- Miniature Video Stream Container -->
+<div class="relative w-full h-36 rounded-xl overflow-hidden mt-2 bg-slate-900 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="High-contrast night vision highway traffic camera view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy9w1JarrB3CIn0mJ70zPgwX_m-I3Yb79ymKrvMbDwnmw3RlmMXl5_NTlImWza7zYn0o7R6lu3tl3E1DKZTLr7YeRV2HZXyxG4w_mFE0iiZxrtMtH_zfhT-C3VwWIYgeLuUZ6HudsRSoNB3kRCJD9ickXLkH38EmTN-5rCb-0VdOIgSg5K15e5asvDXCJjKDaJwpAg1DgCSrlw132-MNIJ-dhQlaFafiSgVCSPhvtgm7Y_0P1wEXlD"/>
+<div class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-sm text-white text-[10px] font-medium">
+                  Live Stream
+                </div>
+<div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-rose-600/90 text-white text-[10px] font-bold tracking-wider">
+                  TARGET: 7XYZ892
+                </div>
+</div>
+<!-- Mini Stats -->
+<div class="grid grid-cols-2 gap-2 mt-2 pt-1 text-xs">
+<div class="bg-white/70 p-2 rounded-xl border border-white">
+<span class="text-[10px] text-slate-400 font-medium block">Detection Flow</span>
+<span class="text-xs font-bold text-slate-800" id="active-cam-rate">54 veh/min</span>
+</div>
+<div class="bg-white/70 p-2 rounded-xl border border-white">
+<span class="text-[10px] text-slate-400 font-medium block">OCR Confidence</span>
+<span class="text-xs font-bold text-blue-600" id="active-cam-ocr">98.4%</span>
+</div>
+</div>
+</div>
+<!-- Bottom Floating Timeline & Map Utilities -->
+<div class="absolute bottom-3 inset-x-4 z-20 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+<div class="glass-pill px-3 py-1.5 rounded-2xl flex items-center gap-2 pointer-events-auto">
+<span class="material-symbols-outlined text-[16px] text-slate-400">schedule</span>
+<button class="px-2.5 py-1 text-xs font-bold rounded-xl bg-blue-600 text-white">Live</button>
+<button class="px-2.5 py-1 text-xs font-medium rounded-xl text-slate-600 hover:bg-slate-100 transition">-15m</button>
+<button class="px-2.5 py-1 text-xs font-medium rounded-xl text-slate-600 hover:bg-slate-100 transition">-30m</button>
+<button class="px-2.5 py-1 text-xs font-medium rounded-xl text-slate-600 hover:bg-slate-100 transition">-1h</button>
+</div>
+<!-- Map Zoom Controls -->
+<div class="glass-pill p-1 rounded-2xl flex items-center gap-1 pointer-events-auto">
+<button class="w-7 h-7 flex items-center justify-center rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold shadow-sm transition">+</button>
+<button class="w-7 h-7 flex items-center justify-center rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold shadow-sm transition">-</button>
+<button class="px-2.5 h-7 flex items-center gap-1 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium shadow-sm transition">
+<span class="material-symbols-outlined text-[14px]">center_focus_strong</span>
+<span>Reset</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right-Hand Real-Time Incident Stream Dock (28%) -->
+<div class="lg:col-span-4 xl:col-span-4 flex flex-col glass-panel rounded-3xl overflow-hidden min-h-[680px] h-[calc(100vh-230px)] shadow-xl border border-white">
+<!-- Stream Header -->
+<div class="p-4 border-b border-slate-100/80 bg-white/50 backdrop-blur-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></div>
+<h2 class="text-sm font-bold text-slate-900 tracking-tight">Real-Time Incident Stream</h2>
+</div>
+<span class="text-[11px] font-semibold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">19 Active</span>
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center gap-1.5 mt-3 overflow-x-auto pb-0.5">
+<button class="px-3 py-1 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm shrink-0">All</button>
+<button class="px-3 py-1 rounded-xl text-xs font-semibold text-slate-600 bg-white/70 hover:bg-white border border-slate-200/60 shrink-0 transition">Cloned</button>
+<button class="px-3 py-1 rounded-xl text-xs font-semibold text-slate-600 bg-white/70 hover:bg-white border border-slate-200/60 shrink-0 transition">Speed</button>
+<button class="px-3 py-1 rounded-xl text-xs font-semibold text-slate-600 bg-white/70 hover:bg-white border border-slate-200/60 shrink-0 transition">BOLO</button>
+<button class="px-3 py-1 rounded-xl text-xs font-semibold text-slate-600 bg-white/70 hover:bg-white border border-slate-200/60 shrink-0 transition">Commercial</button>
+</div>
+</div>
+<!-- Incident Scrollable Feed Container -->
+<div class="flex-1 overflow-y-auto p-4 space-y-3" id="incident-feed-scroll">
+<!-- Card 1: High Priority Flagged Anomaly (Soft Red/Rose Glass Tint) -->
+<div class="p-4 rounded-2xl bg-gradient-to-br from-rose-50/90 to-white/95 border border-rose-200/80 shadow-sm transition hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-100 text-rose-700 uppercase tracking-wide">
+                  Critical · Cloned Plate
+                </span>
+<span class="text-[11px] font-medium text-slate-400">31s ago</span>
+</div>
+<div class="mt-2">
+<h3 class="text-xs font-bold text-slate-900 leading-snug">Impossible Velocity Correlation</h3>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="px-2 py-0.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-800">
+                    7XYZ892
+                  </span>
+<span class="text-[11px] text-slate-500 font-medium">Sedan · Black</span>
+</div>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Simultaneous detection at <strong class="text-slate-800 font-semibold">CAM-402</strong> and <strong class="text-slate-800 font-semibold">CAM-204</strong> (14.2 miles apart within 90s). Implied speed: <span class="text-rose-600 font-bold">568 mph</span>.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-3 pt-2.5 border-t border-rose-100">
+<button class="px-3 py-1.5 rounded-xl bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition flex items-center justify-center gap-1.5 shadow-sm shadow-rose-600/20">
+<span class="material-symbols-outlined text-[14px]">local_police</span>
+<span>Dispatch Patrol</span>
+</button>
+<button class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-slate-50 transition flex items-center justify-center gap-1">
+<span>Review Case</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Amber Priority (Stolen Vehicle BOLO) -->
+<div class="p-4 rounded-2xl bg-gradient-to-br from-amber-50/90 to-white/95 border border-amber-200/80 shadow-sm transition hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800 uppercase tracking-wide">
+                  High Priority · Stolen BOLO
+                </span>
+<span class="text-[11px] font-medium text-slate-400">1m ago</span>
+</div>
+<div class="mt-2">
+<h3 class="text-xs font-bold text-slate-900 leading-snug">Active Stolen Vehicle Match</h3>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="px-2 py-0.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-800">
+                    3KLM401
+                  </span>
+<span class="text-[11px] text-slate-500 font-medium">2021 Dodge Charger</span>
+</div>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Optical verification at <strong class="text-slate-800 font-semibold">CAM-118</strong> (Harbor Tunnel). Speed recorded at <span class="text-amber-700 font-bold">78 mph</span> in a 45 mph zone.
+                </p>
+</div>
+<div class="flex items-center justify-between mt-3 pt-2.5 border-t border-amber-100">
+<span class="text-[11px] font-semibold text-slate-500">98.9% match confidence</span>
+<button class="px-3 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-semibold hover:bg-amber-600 transition flex items-center gap-1 shadow-sm shadow-amber-500/20">
+<span class="material-symbols-outlined text-[14px]">navigation</span>
+<span>Intercept Route</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Traffic Directional Warning -->
+<div class="p-4 rounded-2xl bg-white/90 border border-slate-200/80 shadow-sm transition hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-orange-100 text-orange-800 uppercase tracking-wide">
+                  Traffic Hazard
+                </span>
+<span class="text-[11px] font-medium text-slate-400">2m ago</span>
+</div>
+<div class="mt-2">
+<h3 class="text-xs font-bold text-slate-900 leading-snug">Wrong-Way Driver Detected</h3>
+<p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                  Sensors at <strong class="text-slate-800 font-semibold">CAM-077</strong> (Ramp 4B Eastbound) triggered reversed flow. Overhead variable matrix signs deployed automatically.
+                </p>
+</div>
+<div class="flex items-center justify-between mt-3 pt-2.5 border-t border-slate-100">
+<span class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  VMS Signage Active
+                </span>
+<button class="px-3 py-1 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
+                  Hold Ramp
+                </button>
+</div>
+</div>
+<!-- Card 4: Routine Commercial Infraction -->
+<div class="p-4 rounded-2xl bg-white/90 border border-slate-200/80 shadow-sm transition hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-blue-100 text-blue-700 uppercase tracking-wide">
+                  Commercial Weight
+                </span>
+<span class="text-[11px] font-medium text-slate-400">4m ago</span>
+</div>
+<div class="mt-2">
+<h3 class="text-xs font-bold text-slate-900 leading-snug">Overweight Bypass Flagged</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-bold text-slate-700">9TTB120</span>
+<span class="text-[11px] text-slate-400">Semi 3-Axle</span>
+</div>
+<p class="text-xs text-slate-500 mt-1">
+                  Est. gross 94,200 lbs (Limit 80,000 lbs) at Weigh Stn 3 East.
+                </p>
+</div>
+<div class="flex items-center justify-between mt-3 pt-2 border-t border-slate-100">
+<span class="text-[11px] font-medium text-blue-600">Auto-Citation #9921</span>
+<button class="px-2.5 py-1 text-xs font-medium text-slate-500 hover:text-slate-800 transition">
+                  Acknowledge
+                </button>
+</div>
+</div>
+</div>
+<!-- Right Dock Footer -->
+<div class="p-3 border-t border-slate-100 bg-white/60 flex items-center justify-between text-xs">
+<span class="text-slate-500 text-[11px] font-medium flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              Auto-ingest: 12.4 items/s
+            </span>
+<button class="px-2.5 py-1 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold text-[11px] hover:bg-slate-50 transition shadow-sm">
+              Export Stream
+            </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Interactive Camera Selector & Micro-Interactions Script -->
+<script>
+    function selectCamera(id, ocr, rate, locationName) {
+      const titleEl = document.getElementById('active-cam-title');
+      const ocrEl = document.getElementById('active-cam-ocr');
+      const rateEl = document.getElementById('active-cam-rate');
+      
+      if (titleEl) titleEl.innerText = `${id} - ${locationName}`;
+      if (ocrEl) ocrEl.innerText = ocr;
+      if (rateEl) rateEl.innerText = rate;
+    }
+
+    // Toggle Heatmap Button
+    const heatmapBtn = document.getElementById('toggle-heatmap');
+    if (heatmapBtn) {
+      heatmapBtn.addEventListener('click', function() {
+        const isOff = this.innerText.includes('[OFF]');
+        if (isOff) {
+          this.innerText = 'Heatmap [ON]';
+          this.className = 'px-3 py-1 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition';
+        } else {
+          this.innerText = 'Heatmap [OFF]';
+          this.className = 'px-3 py-1 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white/80 transition';
+        }
+      });
+    }
+  </script>
+</body></html>

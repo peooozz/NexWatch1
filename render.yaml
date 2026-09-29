@@ -1,0 +1,22 @@
+# ==============================================================================
+# Render Infrastructure as Code Blueprint
+# https://render.com/docs/blueprint-spec
+# ==============================================================================
+
+services:
+  - type: web
+    name: nexwatch-atcs
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: SPEED_THRESHOLD_KMH
+        value: "120.0"
+      - key: SIMILARITY_THRESHOLD
+        value: "0.60"
